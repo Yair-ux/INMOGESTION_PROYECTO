@@ -11,9 +11,12 @@ export default function Inicio() {
           <p className="mt-4 text-lg max-w-2xl mx-auto">
             Encuentra la propiedad de tus sueños con la ayuda de nuestros agentes expertos.
           </p>
-          <button className="mt-6 bg-blue-900 hover:bg-blue-800 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition">
-            Ver Propiedades
-          </button>
+          <Link
+  to="/propiedades"
+  className="mt-6 inline-block bg-blue-900 hover:bg-blue-800 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition"
+>
+  Ver Propiedades
+</Link>
         </div>
   
         {/* Sección de ventajas */}
