@@ -51,8 +51,8 @@ export default function Registro() {
         alert("❌ Error: " + (data.message || "No se pudo registrar"));
       }
     } catch (err) {
-      alert("❌ Error de conexión con el servidor");
-    }
+  alert("❌ Error de conexión con el servidor: " + err.message);
+}
   };
 
   // 👉 Paso 4: Formulario que usa handleChange y handleSubmit
