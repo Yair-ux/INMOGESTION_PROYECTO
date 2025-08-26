@@ -4,7 +4,7 @@ export const inmuebles = {
         id: 1,
         titulo: "Lote Campestre",
         descripcion: "Lote de 500m² en zona campestre, ideal para construir tu casa soñada.",
-        precio: "$30,000 USD",
+        precio: "$30,000,000 COP",
         ubicacion: "Vereda El Paraíso, Municipio X",
         imagen: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
       },
@@ -12,7 +12,7 @@ export const inmuebles = {
         id: 2,
         titulo: "Lote Urbano",
         descripcion: "Lote de 200m² en zona urbana, cerca de colegios y supermercados.",
-        precio: "$45,000 USD",
+        precio: "$45,000,000 COP",
         ubicacion: "Barrio Central, Ciudad Y",
         imagen: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80"
       }

@@ -15,11 +15,11 @@ export default function App() {
   return (
     <main className="min-h-screen bg-gray-100 text-gray-800 flex flex-col">
       {/* ================= ENCABEZADO ================= */}
-      <header className="bg-yellow-500 shadow-md">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <header className="bg-gradient-to-r from-orange-500 to-yellow-400 shadow-md">
+  <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <img src={logo} alt="InmoGestión Logo" className="h-10 w-auto" />
+            <img src={logo} alt="InmoGestión Logo" className="h-14 w-auto" />
             <span className="text-white text-2xl font-bold tracking-wide">
               InmoGestión
             </span>
