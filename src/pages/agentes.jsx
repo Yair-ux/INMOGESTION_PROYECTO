@@ -8,21 +8,21 @@ const agentes = [
     nombre: "Sebas Tique",
     correo: "juan.tiqug@email.com",
     telefono: "+57 300 123 4567",
-    foto: "https://randomuser.me/api/portraits/men/32.jpg",
+    foto: "/images/sebas.jpg", // ahora apunta a tu archivo en /public/images
   },
   {
     id: 2,
     nombre: "Yair Peña",
     correo: "yairstevanp@gmail.com",
-    telefono: "+57 310 987 6543",
-    foto: "https://randomuser.me/api/portraits/women/44.jpg",
+    telefono: "+57 3214622453",
+    foto: "/images/yair.jpg",
   },
   {
     id: 3,
-    nombre: "Yosman ESpinosa ",
+    nombre: "Yosman Espinosa",
     correo: "yosmansena31@gmail.com",
     telefono: "+57 320 456 7890",
-    foto: "https://randomuser.me/api/portraits/men/56.jpg",
+    foto: "/images/yosman.jpg",
   },
 ];
 
