@@ -2,12 +2,15 @@ import { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import logo from "./assets/logo.png";
 
+
 // Páginas
 import Inicio from "./pages/inicio";
 import Propiedades from "./pages/propiedades";
 import Agentes from "./pages/agentes";
 import Contacto from "./pages/contacto";
 import Registro from "./pages/registro";
+import login from "./pages/login";
+import Login from "./pages/login";
 
 export default function App() {
   const [menuAbierto, setMenuAbierto] = useState(false);
@@ -25,14 +28,13 @@ export default function App() {
             </span>
           </div>
 
-          {/* Menú de navegación para escritorio */}
-          <nav aria-label="Navegación principal" className="hidden md:flex gap-8 text-lg">
-            <Link to="/" className="text-gray-200 hover:text-yellow-300 transition">Inicio</Link>
-            <Link to="/propiedades" className="text-gray-200 hover:text-yellow-300 transition">Propiedades</Link>
-            <Link to="/agentes" className="text-gray-200 hover:text-yellow-300 transition">Agentes</Link>
-            <Link to="/contacto" className="text-gray-200 hover:text-yellow-300 transition">Contacto</Link>
-            <Link to="/registro" className="text-gray-200 hover:text-yellow-300 transition">Registro</Link>
-          </nav>
+          <nav aria-label="Navegación principal" className="hidden md:flex gap-10 text-xl font-semibold">
+  <Link to="/" className="text-blue-900 hover:text-yellow-400 transition">Inicio</Link>
+  <Link to="/propiedades" className="text-blue-900 hover:text-yellow-400 transition">Propiedades</Link>
+  <Link to="/agentes" className="text-blue-900 hover:text-yellow-400 transition">Agentes</Link>
+  <Link to="/contacto" className="text-blue-900 hover:text-yellow-400 transition">Contacto</Link>
+  <Link to="/registro" className="text-blue-900 hover:text-yellow-400 transition">Registro</Link>
+</nav>
 
           {/* Botón menú móvil */}
           <button
@@ -64,6 +66,7 @@ export default function App() {
             <Link to="/agentes" onClick={() => setMenuAbierto(false)} className="hover:text-yellow-300">Agentes</Link>
             <Link to="/contacto" onClick={() => setMenuAbierto(false)} className="hover:text-yellow-300">Contacto</Link>
             <Link to="/registro" onClick={() => setMenuAbierto(false)} className="hover:text-yellow-300">Registro</Link>
+            <Link to="/login" onClick={() => setMenuAbierto(false)} className="hover:text-yellow-300">Iniciar Sesión</Link>
           </nav>
         )}
       </header>
@@ -76,6 +79,7 @@ export default function App() {
           <Route path="/agentes" element={<Agentes />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/registro" element={<Registro />} />
+          <Route path="/login" element={<Login />} />
           {/* Opcional: 404 */}
           <Route path="*" element={<h2 className="text-xl">Página no encontrada</h2>} />
         </Routes>
