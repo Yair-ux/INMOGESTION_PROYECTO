@@ -17,8 +17,8 @@ export default function Inicio() {
         </div>
 
         <div className="bg-white p-6 rounded-xl shadow-lg border">
-          <h3 className="text-xl font-bold text-blue-900">Agentes expertos</h3>
-          <p className="mt-2 text-gray-600">Profesionales que te guiarán en todo el proceso.</p>
+          <h3 className="text-xl font-bold text-blue-900">..</h3>
+          <p className="mt-2 text-gray-600"></p>
         </div>
 
      <div

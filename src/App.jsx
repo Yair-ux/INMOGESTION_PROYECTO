@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
 import logo from "./assets/logo.png";
 
 // Páginas
@@ -8,13 +8,25 @@ import Propiedades from "./pages/propiedades";
 import Agentes from "./pages/agentes";
 import Contacto from "./pages/contacto";
 import Registro from "./pages/registro";
-import Login from "./pages/login";   // 👈 aquí borré el import duplicado "login" (con minúscula)
+import Login from "./pages/login";
+import CargaMasiva from "./pages/CargaMasiva"; // ✅ NUEVO
 
-// 📌 Nuevo: importamos los breadcrumbs
+// 📌 Importar Breadcrumbs (crea el archivo si no lo tienes)
 import Breadcrumbs from "./components/Breadcrumbs";
 
 export default function App() {
   const [menuAbierto, setMenuAbierto] = useState(false);
+
+  // 🔎 Usamos la ruta actual para saber qué enlace está activo
+  const location = useLocation();
+
+  // Clase para enlaces del menú en escritorio
+  const desktopLinkClass = (path) =>
+    `transition ${location.pathname === path ? "text-yellow-400 font-bold" : "text-blue-900 hover:text-yellow-400"}`;
+
+  // Clase para enlaces en el menú móvil (mantenemos texto blanco por defecto)
+  const mobileLinkClass = (path) =>
+    location.pathname === path ? "text-yellow-300 font-semibold" : "text-white hover:text-yellow-300";
 
   return (
     <main className="min-h-screen bg-gray-100 text-gray-800 flex flex-col">
@@ -29,25 +41,17 @@ export default function App() {
             </span>
           </div>
 
+          {/* Menú escritorio */}
           <nav
             aria-label="Navegación principal"
             className="hidden md:flex gap-10 text-xl font-semibold"
           >
-            <Link to="/" className="text-blue-900 hover:text-yellow-400 transition">
-              Inicio
-            </Link>
-            <Link to="/propiedades" className="text-blue-900 hover:text-yellow-400 transition">
-              Propiedades
-            </Link>
-            <Link to="/agentes" className="text-blue-900 hover:text-yellow-400 transition">
-              Agentes
-            </Link>
-            <Link to="/contacto" className="text-blue-900 hover:text-yellow-400 transition">
-              Contacto
-            </Link>
-            <Link to="/registro" className="text-blue-900 hover:text-yellow-400 transition">
-              Registro
-            </Link>
+            <Link to="/" className={desktopLinkClass("/")}>Inicio</Link>
+            <Link to="/propiedades" className={desktopLinkClass("/propiedades")}>Propiedades</Link>
+            <Link to="/agentes" className={desktopLinkClass("/agentes")}>Agentes</Link>
+            <Link to="/contacto" className={desktopLinkClass("/contacto")}>Contacto</Link>
+            <Link to="/registro" className={desktopLinkClass("/registro")}>Registro</Link>
+            <Link to="/carga-masiva" className={desktopLinkClass("/carga-masiva")}>Carga Masiva</Link>
           </nav>
 
           {/* Botón menú móvil */}
@@ -57,87 +61,38 @@ export default function App() {
             onClick={() => setMenuAbierto(!menuAbierto)}
           >
             {menuAbierto ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                className="w-7 h-7"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                   stroke="currentColor" className="w-7 h-7">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                className="w-7 h-7"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                   stroke="currentColor" className="w-7 h-7">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                      d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
           </button>
         </div>
 
-        {/* Menú móvil desplegable */}
+        {/* Menú móvil */}
         {menuAbierto && (
           <nav className="md:hidden bg-blue-800 text-white flex flex-col px-6 py-4 space-y-4">
-            <Link to="/" onClick={() => setMenuAbierto(false)} className="hover:text-yellow-300">
-              Inicio
-            </Link>
-            <Link
-              to="/propiedades"
-              onClick={() => setMenuAbierto(false)}
-              className="hover:text-yellow-300"
-            >
-              Propiedades
-            </Link>
-            <Link
-              to="/agentes"
-              onClick={() => setMenuAbierto(false)}
-              className="hover:text-yellow-300"
-            >
-              Agentes
-            </Link>
-            <Link
-              to="/contacto"
-              onClick={() => setMenuAbierto(false)}
-              className="hover:text-yellow-300"
-            >
-              Contacto
-            </Link>
-            <Link
-              to="/registro"
-              onClick={() => setMenuAbierto(false)}
-              className="hover:text-yellow-300"
-            >
-              Registro
-            </Link>
-            <Link
-              to="/login"
-              onClick={() => setMenuAbierto(false)}
-              className="hover:text-yellow-300"
-            >
-              Iniciar Sesión
-            </Link>
+            <Link to="/" onClick={() => setMenuAbierto(false)} className={mobileLinkClass("/")}>Inicio</Link>
+            <Link to="/propiedades" onClick={() => setMenuAbierto(false)} className={mobileLinkClass("/propiedades")}>Propiedades</Link>
+            <Link to="/agentes" onClick={() => setMenuAbierto(false)} className={mobileLinkClass("/agentes")}>Agentes</Link>
+            <Link to="/contacto" onClick={() => setMenuAbierto(false)} className={mobileLinkClass("/contacto")}>Contacto</Link>
+            <Link to="/registro" onClick={() => setMenuAbierto(false)} className={mobileLinkClass("/registro")}>Registro</Link>
+            <Link to="/login" onClick={() => setMenuAbierto(false)} className={mobileLinkClass("/login")}>Iniciar Sesión</Link>
+            <Link to="/carga-masiva" onClick={() => setMenuAbierto(false)} className={mobileLinkClass("/carga-masiva")}>Carga Masiva</Link>
           </nav>
         )}
       </header>
 
       {/* ================= CONTENIDO (RUTAS) ================= */}
       <div className="flex-1 max-w-7xl mx-auto px-6 py-12">
-        {/* 📌 Nuevo: Breadcrumbs antes de las rutas */}
+        {/* ← Aquí añadimos las migas de pan */}
         <Breadcrumbs />
 
         <Routes>
@@ -147,6 +102,7 @@ export default function App() {
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/registro" element={<Registro />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/carga-masiva" element={<CargaMasiva />} /> {/* ✅ NUEVO */}
           {/* Opcional: 404 */}
           <Route path="*" element={<h2 className="text-xl">Página no encontrada</h2>} />
         </Routes>
