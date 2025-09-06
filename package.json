@@ -4,17 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "backend": "nodemon backend/index.js",
-  "dev:backend": "nodemon backend/index.js",
-  "dev": "vite",
-  "start": "concurrently \"npm run backend\" \"npm run dev\"",
-  "build": "vite build",
-  "lint": "eslint .",
-  "preview": "vite preview"
-}
-
-
-,
+    "backend": "nodemon backend/index.js",
+    "dev:backend": "nodemon backend/index.js",
+    "dev": "vite",
+    "start": "concurrently \"npm run backend\" \"npm run dev\"",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.12",
     "cors": "^2.8.5",
