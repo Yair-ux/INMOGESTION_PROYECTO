@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Conexión a MySQL
+// ==================== Conexión a MySQL ====================
 const db = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -17,14 +17,14 @@ const db = mysql.createPool({
   database: process.env.DB_NAME,
 });
 
-// Rutas existentes
+// ==================== Rutas existentes ====================
 app.use('/api/auth', require('./routes/authRoutes'));
 
-// multer en memoria
+// ==================== Configuración Multer ====================
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-// Endpoint para carga masiva
+// ==================== Endpoint carga masiva ====================
 app.post('/api/upload', upload.single('file'), async (req, res) => {
   if (!req.file) return res.status(400).json({ error: 'No se subió ningún archivo' });
 
@@ -64,6 +64,7 @@ app.post('/api/upload', upload.single('file'), async (req, res) => {
   }
 });
 
+// ==================== Servidor ====================
 app.listen(process.env.PORT, () => {
   console.log(`Servidor backend en puerto ${process.env.PORT}`);
 });
