@@ -1,5 +1,6 @@
+// src/App.jsx
 import { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, NavLink } from "react-router-dom";
 import logo from "./assets/logo.png";
 
 // Páginas
@@ -9,6 +10,9 @@ import Agentes from "./pages/agentes";
 import Contacto from "./pages/contacto";
 import Registro from "./pages/registro";
 
+// Componentes
+import Breadcrumbs from "./components/Breadcrumbs";
+
 export default function App() {
   const [menuAbierto, setMenuAbierto] = useState(false);
 
@@ -16,7 +20,7 @@ export default function App() {
     <main className="min-h-screen bg-gray-100 text-gray-800 flex flex-col">
       {/* ================= ENCABEZADO ================= */}
       <header className="bg-gradient-to-r from-orange-500 to-yellow-400 shadow-md">
-  <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center gap-2">
             <img src={logo} alt="InmoGestión Logo" className="h-14 w-auto" />
@@ -27,11 +31,55 @@ export default function App() {
 
           {/* Menú de navegación para escritorio */}
           <nav aria-label="Navegación principal" className="hidden md:flex gap-8 text-lg">
-            <Link to="/" className="text-gray-200 hover:text-yellow-300 transition">Inicio</Link>
-            <Link to="/propiedades" className="text-gray-200 hover:text-yellow-300 transition">Propiedades</Link>
-            <Link to="/agentes" className="text-gray-200 hover:text-yellow-300 transition">Agentes</Link>
-            <Link to="/contacto" className="text-gray-200 hover:text-yellow-300 transition">Contacto</Link>
-            <Link to="/registro" className="text-gray-200 hover:text-yellow-300 transition">Registro</Link>
+            <NavLink
+              to="/"
+              end
+              className={({ isActive }) =>
+                `transition ${
+                  isActive
+                    ? "text-yellow-300 font-semibold border-b-2 border-yellow-300"
+                    : "text-gray-200 hover:text-yellow-300"
+                }`
+              }
+            >
+              Inicio
+            </NavLink>
+
+            <NavLink
+              to="/propiedades"
+              className={({ isActive }) =>
+                `transition ${isActive ? "text-yellow-300 font-semibold border-b-2 border-yellow-300" : "text-gray-200 hover:text-yellow-300"}`
+              }
+            >
+              Propiedades
+            </NavLink>
+
+            <NavLink
+              to="/agentes"
+              className={({ isActive }) =>
+                `transition ${isActive ? "text-yellow-300 font-semibold border-b-2 border-yellow-300" : "text-gray-200 hover:text-yellow-300"}`
+              }
+            >
+              Agentes
+            </NavLink>
+
+            <NavLink
+              to="/contacto"
+              className={({ isActive }) =>
+                `transition ${isActive ? "text-yellow-300 font-semibold border-b-2 border-yellow-300" : "text-gray-200 hover:text-yellow-300"}`
+              }
+            >
+              Contacto
+            </NavLink>
+
+            <NavLink
+              to="/registro"
+              className={({ isActive }) =>
+                `transition ${isActive ? "text-yellow-300 font-semibold border-b-2 border-yellow-300" : "text-gray-200 hover:text-yellow-300"}`
+              }
+            >
+              Registro
+            </NavLink>
           </nav>
 
           {/* Botón menú móvil */}
@@ -59,24 +107,26 @@ export default function App() {
         {/* Menú móvil desplegable */}
         {menuAbierto && (
           <nav className="md:hidden bg-blue-800 text-white flex flex-col px-6 py-4 space-y-4">
-            <Link to="/" onClick={() => setMenuAbierto(false)} className="hover:text-yellow-300">Inicio</Link>
-            <Link to="/propiedades" onClick={() => setMenuAbierto(false)} className="hover:text-yellow-300">Propiedades</Link>
-            <Link to="/agentes" onClick={() => setMenuAbierto(false)} className="hover:text-yellow-300">Agentes</Link>
-            <Link to="/contacto" onClick={() => setMenuAbierto(false)} className="hover:text-yellow-300">Contacto</Link>
-            <Link to="/registro" onClick={() => setMenuAbierto(false)} className="hover:text-yellow-300">Registro</Link>
+            <NavLink to="/" end onClick={() => setMenuAbierto(false)} className={({ isActive }) => isActive ? "text-yellow-300 font-semibold" : "hover:text-yellow-300"}>Inicio</NavLink>
+            <NavLink to="/propiedades" onClick={() => setMenuAbierto(false)} className={({ isActive }) => isActive ? "text-yellow-300 font-semibold" : "hover:text-yellow-300"}>Propiedades</NavLink>
+            <NavLink to="/agentes" onClick={() => setMenuAbierto(false)} className={({ isActive }) => isActive ? "text-yellow-300 font-semibold" : "hover:text-yellow-300"}>Agentes</NavLink>
+            <NavLink to="/contacto" onClick={() => setMenuAbierto(false)} className={({ isActive }) => isActive ? "text-yellow-300 font-semibold" : "hover:text-yellow-300"}>Contacto</NavLink>
+            <NavLink to="/registro" onClick={() => setMenuAbierto(false)} className={({ isActive }) => isActive ? "text-yellow-300 font-semibold" : "hover:text-yellow-300"}>Registro</NavLink>
           </nav>
         )}
       </header>
 
       {/* ================= CONTENIDO (RUTAS) ================= */}
       <div className="flex-1 max-w-7xl mx-auto px-6 py-12">
+        {/* Breadcrumbs justo arriba del contenido */}
+        <Breadcrumbs />
+
         <Routes>
           <Route path="/" element={<Inicio />} />
           <Route path="/propiedades" element={<Propiedades />} />
           <Route path="/agentes" element={<Agentes />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/registro" element={<Registro />} />
-          {/* Opcional: 404 */}
           <Route path="*" element={<h2 className="text-xl">Página no encontrada</h2>} />
         </Routes>
       </div>
