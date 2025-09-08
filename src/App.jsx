@@ -1,6 +1,6 @@
 // src/App.jsx
 import { useState } from "react";
-import { Routes, Route, NavLink } from "react-router-dom";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
 import logo from "./assets/logo.png";
 
 // Páginas
@@ -9,12 +9,31 @@ import Propiedades from "./pages/propiedades";
 import Agentes from "./pages/agentes";
 import Contacto from "./pages/contacto";
 import Registro from "./pages/registro";
+import Login from "./pages/login";
+import CargaMasiva from "./pages/CargaMasiva"; // ✅ NUEVO
 
 // Componentes
 import Breadcrumbs from "./components/Breadcrumbs";
 
 export default function App() {
   const [menuAbierto, setMenuAbierto] = useState(false);
+
+  // 🔎 Usamos la ruta actual para saber qué enlace está activo
+  const location = useLocation();
+
+  // Clase para enlaces del menú en escritorio
+  const desktopLinkClass = (path) =>
+    `transition ${
+      location.pathname === path
+        ? "text-yellow-400 font-bold"
+        : "text-gray-200 hover:text-yellow-300"
+    }`;
+
+  // Clase para enlaces en el menú móvil
+  const mobileLinkClass = (path) =>
+    location.pathname === path
+      ? "text-yellow-300 font-semibold"
+      : "text-white hover:text-yellow-300";
 
   return (
     <main className="min-h-screen bg-gray-100 text-gray-800 flex flex-col">
@@ -29,57 +48,18 @@ export default function App() {
             </span>
           </div>
 
-          {/* Menú de navegación para escritorio */}
-          <nav aria-label="Navegación principal" className="hidden md:flex gap-8 text-lg">
-            <NavLink
-              to="/"
-              end
-              className={({ isActive }) =>
-                `transition ${
-                  isActive
-                    ? "text-yellow-300 font-semibold border-b-2 border-yellow-300"
-                    : "text-gray-200 hover:text-yellow-300"
-                }`
-              }
-            >
-              Inicio
-            </NavLink>
-
-            <NavLink
-              to="/propiedades"
-              className={({ isActive }) =>
-                `transition ${isActive ? "text-yellow-300 font-semibold border-b-2 border-yellow-300" : "text-gray-200 hover:text-yellow-300"}`
-              }
-            >
-              Propiedades
-            </NavLink>
-
-            <NavLink
-              to="/agentes"
-              className={({ isActive }) =>
-                `transition ${isActive ? "text-yellow-300 font-semibold border-b-2 border-yellow-300" : "text-gray-200 hover:text-yellow-300"}`
-              }
-            >
-              Agentes
-            </NavLink>
-
-            <NavLink
-              to="/contacto"
-              className={({ isActive }) =>
-                `transition ${isActive ? "text-yellow-300 font-semibold border-b-2 border-yellow-300" : "text-gray-200 hover:text-yellow-300"}`
-              }
-            >
-              Contacto
-            </NavLink>
-
-            <NavLink
-              to="/registro"
-              className={({ isActive }) =>
-                `transition ${isActive ? "text-yellow-300 font-semibold border-b-2 border-yellow-300" : "text-gray-200 hover:text-yellow-300"}`
-              }
-            >
-              Registro
-            </NavLink>
+          {/* Menú escritorio */}
+          <nav
+            aria-label="Navegación principal"
+            className="hidden md:flex gap-10 text-lg font-semibold"
+          >
+            <Link to="/" className={desktopLinkClass("/")}>Inicio</Link>
+            <Link to="/propiedades" className={desktopLinkClass("/propiedades")}>Propiedades</Link>
+            <Link to="/agentes" className={desktopLinkClass("/agentes")}>Agentes</Link>
+            <Link to="/contacto" className={desktopLinkClass("/contacto")}>Contacto</Link>
+            <Link to="/registro" className={desktopLinkClass("/registro")}>Registro</Link>
+            <Link to="/login" className={desktopLinkClass("/login")}>Iniciar Sesión</Link>
+            <Link to="/carga-masiva" className={desktopLinkClass("/carga-masiva")}>Carga Masiva</Link>
           </nav>
 
           {/* Botón menú móvil */}
@@ -104,14 +84,16 @@ export default function App() {
           </button>
         </div>
 
-        {/* Menú móvil desplegable */}
+        {/* Menú móvil */}
         {menuAbierto && (
           <nav className="md:hidden bg-blue-800 text-white flex flex-col px-6 py-4 space-y-4">
-            <NavLink to="/" end onClick={() => setMenuAbierto(false)} className={({ isActive }) => isActive ? "text-yellow-300 font-semibold" : "hover:text-yellow-300"}>Inicio</NavLink>
-            <NavLink to="/propiedades" onClick={() => setMenuAbierto(false)} className={({ isActive }) => isActive ? "text-yellow-300 font-semibold" : "hover:text-yellow-300"}>Propiedades</NavLink>
-            <NavLink to="/agentes" onClick={() => setMenuAbierto(false)} className={({ isActive }) => isActive ? "text-yellow-300 font-semibold" : "hover:text-yellow-300"}>Agentes</NavLink>
-            <NavLink to="/contacto" onClick={() => setMenuAbierto(false)} className={({ isActive }) => isActive ? "text-yellow-300 font-semibold" : "hover:text-yellow-300"}>Contacto</NavLink>
-            <NavLink to="/registro" onClick={() => setMenuAbierto(false)} className={({ isActive }) => isActive ? "text-yellow-300 font-semibold" : "hover:text-yellow-300"}>Registro</NavLink>
+            <Link to="/" onClick={() => setMenuAbierto(false)} className={mobileLinkClass("/")}>Inicio</Link>
+            <Link to="/propiedades" onClick={() => setMenuAbierto(false)} className={mobileLinkClass("/propiedades")}>Propiedades</Link>
+            <Link to="/agentes" onClick={() => setMenuAbierto(false)} className={mobileLinkClass("/agentes")}>Agentes</Link>
+            <Link to="/contacto" onClick={() => setMenuAbierto(false)} className={mobileLinkClass("/contacto")}>Contacto</Link>
+            <Link to="/registro" onClick={() => setMenuAbierto(false)} className={mobileLinkClass("/registro")}>Registro</Link>
+            <Link to="/login" onClick={() => setMenuAbierto(false)} className={mobileLinkClass("/login")}>Iniciar Sesión</Link>
+            <Link to="/carga-masiva" onClick={() => setMenuAbierto(false)} className={mobileLinkClass("/carga-masiva")}>Carga Masiva</Link>
           </nav>
         )}
       </header>
@@ -127,6 +109,9 @@ export default function App() {
           <Route path="/agentes" element={<Agentes />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/registro" element={<Registro />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/carga-masiva" element={<CargaMasiva />} />
+          {/* Opcional: 404 */}
           <Route path="*" element={<h2 className="text-xl">Página no encontrada</h2>} />
         </Routes>
       </div>
