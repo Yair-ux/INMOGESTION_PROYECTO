@@ -1,5 +1,6 @@
 // src/App.jsx
 import { useState } from "react";
+import Footer from './components/Footer';
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import logo from "./assets/logo.png";
 
@@ -118,7 +119,7 @@ export default function App() {
 
       {/* ================= PIE DE PÁGINA ================= */}
       <footer className="bg-blue-900 text-gray-200 text-center py-6 mt-auto">
-        <p>&copy; 2025 InmoGestión. Todos los derechos reservados.</p>
+        <p>&copy; 🙌</p>
       </footer>
     </main>
   );
