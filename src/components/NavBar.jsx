@@ -1,5 +1,9 @@
 import { NavLink } from "react-router-dom";
 
+
+<Link to="/politica-privacidad">Política de Privacidad</Link>
+
+
 export default function Navbar() {
   const navItems = [
     { path: "/", label: "Inicio" },

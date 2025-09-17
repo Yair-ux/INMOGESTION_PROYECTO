@@ -1,4 +1,5 @@
 // src/App.jsx
+import Politica from "./pages/Politica";
 import { useState } from "react";
 import Footer from './components/Footer';
 import { Routes, Route, Link, useLocation } from "react-router-dom";
@@ -113,15 +114,15 @@ export default function App() {
           <Route path="/registro" element={<Registro />} />
           <Route path="/login" element={<Login />} />
           <Route path="/carga-masiva" element={<CargaMasiva />} />
+          <Route path="/politica" element={<Politica />} />
+
           {/* Opcional: 404 */}
           <Route path="*" element={<h2 className="text-xl">Página no encontrada</h2>} />
         </Routes>
       </div>
 
       {/* ================= PIE DE PÁGINA ================= */}
-      <footer className="bg-blue-900 text-gray-200 text-center py-6 mt-auto">
-        <p>&copy; 🙌</p>
-      </footer>
+      <Footer />
     </main>
   );
 }
