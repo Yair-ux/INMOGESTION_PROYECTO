@@ -21,11 +21,12 @@ export const inmuebles = {
       {
         id: 3,
         titulo: "Apartamento Moderno",
-        descripcion: "Apartamento de 3 habitaciones, 2 baños, balcón y parqueadero.",
-        precio: "$120,000 USD",
+        descripcion: "Vendo apartamento conjunto portofino En tocancipa 49 MTS Piscina 👙 Gym 2 habitaciones con opción de 3Balcón Cancha de fútbol Guardería ",
+        precio: "$143 millones solo efectivo",
         ubicacion: "Edificio Vista Azul, Ciudad Y",
-        imagen: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=400&q=80"
+        imagen: "INMOGESTION_PROYECTO/public/images/apartamentos.jpeg"
       }
+      
     ],
     casas: [
       {
