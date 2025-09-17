@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import logo from "./assets/logo.png";
 
+
 // Páginas
 import Inicio from "./pages/inicio";
 import Propiedades from "./pages/propiedades";
